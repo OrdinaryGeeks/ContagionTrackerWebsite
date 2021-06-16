@@ -1,0 +1,62 @@
+{
+  "name": "cmeangularasp",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:ssr": "ng run CMEAngularAsp:server:dev",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular-slider/ngx-slider": "^2.0.3",
+    "@nguniversal/module-map-ngfactory-loader": "8.1.1",
+    "bootstrap": "^5.0.1",
+    "core-js": "^3.13.1",
+    "jquery": "^3.6.0",
+    "material": "^0.4.3",
+    "oidc-client": "^1.11.5",
+    "popper.js": "^1.16.0",
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "@agm/core": "*",
+    "@angular-devkit/build-angular": "^0.1000.0",
+    "@angular/cli": "^10.0.0",
+    "@angular/common": "^10.0.0",
+    "@angular/compiler": "^10.0.0",
+    "@angular/compiler-cli": "^10.0.0",
+    "@angular/core": "^10.0.0",
+    "@angular/forms": "^10.0.0",
+    "@angular/language-service": "^12.0.2",
+    "@angular/platform-browser": "^10.0.0",
+    "@angular/platform-browser-dynamic": "^10.0.0",
+    "@angular/platform-server": "^10.0.0",
+    "@angular/router": "^10.0.0",
+    "@types/googlemaps": "^3.39.13",
+    "@types/jasmine": "~3.7.6",
+    "@types/jasminewd2": "~2.0.9",
+    "@types/node": "~15.6.1",
+    "codelyzer": "^6.0.2",
+    "ini": "^2.0.0",
+    "jasmine-core": "~3.7.1",
+    "jasmine-spec-reporter": "~7.0.0",
+    "karma": "^6.3.2",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~3.0.3",
+    "karma-jasmine": "~4.0.1",
+    "karma-jasmine-html-reporter": "^1.6.0",
+    "typescript": "3.9",
+    "zone.js": "^0.10.3"
+  },
+  "optionalDependencies": {
+    "node-sass": "^6.0.0",
+    "protractor": "~7.0.0",
+    "ts-node": "~10.0.0",
+    "tslint": "~5.20.1"
+  }
+}

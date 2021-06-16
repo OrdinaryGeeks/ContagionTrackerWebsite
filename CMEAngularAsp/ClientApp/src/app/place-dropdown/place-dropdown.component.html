@@ -1,0 +1,5 @@
+
+<select #thisSelect2 (change)="onSelect2($event.target.value)">
+  <option [value]="0">Please Select A Place</option>
+  <option *ngFor="let place of places" [value]="place.id">{{place.title}}</option>
+</select>

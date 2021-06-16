@@ -1,0 +1,97 @@
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="lat" [zoom]="15" [longitude]="lng" >
+
+  <agm-marker *ngFor="let place of places; " (markerClick)="markerClicked(m)" [latitude]="place.lat" [longitude]="place.long"></agm-marker>
+  <agm-circle *ngFor="let place of exposedPlaces;" [latitude]="place.lat" [longitude]="place.long"
+              [radius]="place.radius"
+              [fillColor]="'blue'"
+              [circleDraggable]="false"
+              [editable]="false">></agm-circle>
+  <agm-circle *ngFor="let place of checkedInPlaces;" [latitude]="place.lat" [longitude]="place.long"
+              [radius]="place.radius/2"
+              [fillColor]="'yellow'"
+              [circleDraggable]="false"
+              [editable]="false">></agm-circle>
+</agm-map>
+
+<app-date-slider-cme (dateChangeEvent)="changeDate($event)"></app-date-slider-cme>
+<app-time-slider-cme (timeChangeEvent)="CData=$event"></app-time-slider-cme>
+<div class="row">
+    <div class="col-lg-3">
+      <button (click)="toggleInput()">{{ToggleInputString}}</button>
+      </div><div class="col-lg-3">
+        <button (click)="checkInToggle()">{{CheckInExposureString}}</button>
+        </div><div class="col-lg-3">
+          <app-place-dropdown (dropDownSelectPlace)="changePlace($event)"></app-place-dropdown>
+        </div>
+  <div class="col-lg-3">
+    <button (click)="sendToApi()" [disabled]="sTADisabled">{{SendToApiString}}</button>
+  </div>
+      </div>
+    
+<div class="row">
+  <div class="col-lg-3">
+    <app-user-drop-down (dropDownSelection)="changeUser($event)"></app-user-drop-down>
+  </div>
+  <p *ngIf='chosenUser.id ==2'>
+    <img src="https://www.ordinarygeeks.com/cmedemo/alexwilber.jpg" height="50" width="50"/>
+  </p>
+  <div class="col-lg-3">
+    <button (click)="propagateExposures()">Propagate Exposures For Selection</button>
+  </div>
+  <div class="col-lg-1">
+    <app-show-all-check-button [showEveryExposureAndCheckIn]="showAllCAndE" (showAllCAndE)="showEverything($event)"></app-show-all-check-button>Show all Checkins And Exposures (User/All Users)
+  </div>
+
+
+  <div class="col-lg-3">
+    {{DData}}{{DDataExtra}}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-6">
+
+    <table>
+      <tr *ngFor="let checkin of userCheckIns">
+        <td>{{checkin.BeginTime}}</td>
+        <td>{{users[checkin.userCMEID].FirstName}}</td>
+      </tr>
+
+
+
+
+    </table>
+
+
+
+  </div>
+
+
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    In order to make this application work, first you need to click on Input Mode to activate the inputs.  The responsiveness of the site will not work without that button being clicked.
+    Next, Select a name.  The button, Show All, will  show all the exposures/checkins of the last user selected or all of the users if no user is selected.
+
+    In order to activate the date slider, move it to where you want it to go.  If it is on the day you want on the map hot load, then you need to move forward a day and go back one.  If Input Is deactivated, then the map will,
+    not work.
+
+    If you want to add a checkIn or Exposure, choose a name, click input mode on, select checkIn or exposure, choose a place, and then click the Select a time, place, person etc button.
+
+    Propagate Exposures will take a user and turn every checkIn into an Exposure after a suspected Exposure date.
+
+    The checkIn/Exposure button switches the map from checkIns (Yellow) to Exposures (Blue).  The Show All button will show them both at the same time.
+
+    The time is unimplemented for changing exposures/checkins as of this time.
+
+    At this time you have to reload the page after adding an exposure or checkin to view it on the map.  It is a To Do Item for Nathaniel.
+  </div>
+</div>
